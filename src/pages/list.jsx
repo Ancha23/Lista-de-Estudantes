@@ -1,7 +1,8 @@
 import { Header } from "../components/header/header";
 import { Footer } from "../components/footer/footer";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Info,Trash, PlusCircle} from "@phosphor-icons/react";
+
 
 
 const Dados = [
@@ -27,6 +28,7 @@ const Dados = [
   { nome: 'Suely Badru', idade: 20 },
   { nome: 'Luis Izibia', idade: 22 },
 ];
+
 
 const TabelaDeDados = ({ dados }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -58,8 +60,8 @@ const TabelaDeDados = ({ dados }) => {
 
   const handleDelete = (itemToDelete) => {
     const updatedDados = dados.filter(item => item !== itemToDelete);
-    // Update the state here or manage your data more globally if necessary
-    dados.splice(0, dados.length, ...updatedDados); // Update the original array (not recommended, but keeps it simple)
+    
+    dados.splice(0, dados.length, ...updatedDados); 
   };
 
   return (
@@ -78,7 +80,7 @@ const TabelaDeDados = ({ dados }) => {
         </button>
       </div>
 
-      {/* Info Modal */}
+      
       {selectedItem && isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-10 rounded shadow-lg">
@@ -92,11 +94,11 @@ const TabelaDeDados = ({ dados }) => {
         </div>
       )}
 
-      {/* Add Data Modal */}
+     
       {isModalOpen && !selectedItem && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded shadow-lg">
-            <h2 className="text-lg font-bold mb-4">Adicionar Novo Item</h2>
+          <div className="bg-white p-10 rounded shadow-lg">
+            <h2 className="text-lg font-bold mb-4">Adicionar Novo Aluno a Lista</h2>
             <input
               type="text"
               placeholder="Nome"
@@ -139,17 +141,17 @@ const TabelaDeDados = ({ dados }) => {
               </tr>
             </thead>
             <tbody>
-              {filteredDados.map((item, index) => (
+              {filteredDados.map((aluno, index) => (
                 <tr key={index} className="hover:bg-gray-100">
-                  <td className="border border-gray-300 px-25 py-2">{item.nome}</td>
-                  <td className="border border-gray-300 px-4 py-2">{item.idade}</td>
+                  <td className="border border-gray-300 px-25 py-2">{aluno.nome}</td>
+                  <td className="border border-gray-300 px-4 py-2">{aluno.idade}</td>
                   <td className="border border-gray-300 px-4 py-2 flex space-x-4">
-                    <a onClick={() => handleInfoClick(item)} href="#" className="cursor-pointer">
+                    <a onClick={() => handleInfoClick(aluno)} href="#" className="cursor-pointer">
                       <span className="text-blue-700 text-2xl">
                         <Info />
                       </span>
                     </a>
-                    <a onClick={() => handleDelete(item)} href="#" className="cursor-pointer">
+                    <a onClick={() => handleDelete(aluno)} href="#" className="cursor-pointer">
                       <span className="text-red-700 text-2xl">
                         <Trash />
                       </span>
@@ -165,7 +167,7 @@ const TabelaDeDados = ({ dados }) => {
   );
 };
 
-export const Curriculum = () => {
+export const ListaDeEstudantes = () => {
   return (
     <>
       <TabelaDeDados dados={Dados} />

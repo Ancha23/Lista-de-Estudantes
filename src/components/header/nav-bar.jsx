@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-const activeStyles = "text-black font-bold";
+const activeStyles = "text-white/50 font-bold";
 const inactiveStyles = "text-white font-bold";
 export const NavBar = () => {
   return (
@@ -15,12 +15,12 @@ export const NavBar = () => {
       
       </NavLink>
       <NavLink
-        to={"/curriculum"}
+        to={"/list"}
         className={({ isActive }) =>
           `${isActive ? activeStyles : inactiveStyles}`
         }
       >
-        CURRICULUM
+        ESTUDANTES
 
         
       </NavLink>
